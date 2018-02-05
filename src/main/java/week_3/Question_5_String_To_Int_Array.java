@@ -1,5 +1,8 @@
 package week_3;
 
+import com.sun.deploy.util.StringUtils;
+import input.InputUtils;
+
 /**
  *
  Write a method called stringToIntArray which takes a number represented as a
@@ -56,17 +59,51 @@ public class Question_5_String_To_Int_Array {
 
     private void stringsToArrays() {
 
-        // TODO Ask user for a String
-        // TODO Call your stringToIntArray method with this Sting as the argument
-        // TODO Test to see if the array has values or if it is null [ meaning that there were non-int characters in the String]
-        // TODO If the array was created, print the elements of the array to verify it was converted correctly
+        boolean isInt = false; //creates boolean to determine stuff later
+        String getString = " "; //creates empty string so that it can be altered and returned from while loop
+
+        while (isInt == false) { //continues loop until string is not null
+
+            getString = InputUtils.stringInput("Please enter a string: ");
+
+            try {
+                Integer.parseInt(getString);
+
+                isInt = true; //returns true when this is able to happen
+            } catch (NumberFormatException ex) { //exception catcher
+                System.out.println("That is invalid. Use integers only please.");
+                isInt = false;
+            }
+        } int[] newIntArray = stringToIntArray(getString);
+        for(int i = 0;i < newIntArray.length;i++){
+
+            System.out.println(newIntArray[i]);}
 
     }
 
 
-   // TODO Create a public method called stringToIntArray(String)
-    // Convert the String to an integer array of the digits
-    // If the String contains non-numeric characters, return null.
+    public int[] stringToIntArray(String string){
+
+        //char[] newCharArray = string.toCharArray(); //makes the string into a character array
+
+        String[] newCharArray = string.split(""); //makes string into string array divided individually
+
+        int[] results = new int[newCharArray.length]; //create a new int array the same length as the character array
+
+        for(int i = 0;i < newCharArray.length;i++){
+
+            try {
+                Integer.parseInt(string);}
+            catch (NumberFormatException ex) { //exception catcher
+                System.out.println("That is invalid. Use integers only please.");
+                return null;
+            }
+                results[i] = Integer.parseInt(newCharArray[i]);}
+
+        return results;
+    }
+
+
     // If the String is null, return null. Hint: test if the string is null before trying to call any other methods on it.
     // A statement like
     //    return null;

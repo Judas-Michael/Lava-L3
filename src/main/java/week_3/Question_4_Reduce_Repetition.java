@@ -1,5 +1,7 @@
 package week_3;
 
+import input.InputUtils;
+
 import static input.InputUtils.*;
 
 /**
@@ -34,34 +36,28 @@ public class Question_4_Reduce_Repetition {
 
         double totalSales = 0;
 
-        int coffeeCups = intInput("How many cups of coffee did you sell today?");
-        double coffeePrice = doubleInput("What does a cup of coffee cost?");
-        double coffeeDrinkSales = coffeeCups * coffeePrice;
-        totalSales = totalSales + coffeeDrinkSales;
 
-        int chocolateCups = intInput("How many cups of hot chocolate did you sell today?");
-        double chocolatePrice = doubleInput("What does a cup of hot chocolate cost?");
-        double chocolateDrinkSales = chocolateCups * chocolatePrice;
-        totalSales = totalSales + chocolateDrinkSales;
+        //created a preset array assuming these are the only drinks sold
+        String[] coffeeDrinks = {"coffee","hot chocolate","tea", "cappuccino", "mocha"}; //could reformat to take drink suggestions from user input
 
-        int teaCups = intInput("How many cups of tea did you sell today?");
-        double teaPrice = doubleInput("What does a cup of tea cost?");
-        double teaDrinkSales = teaCups * teaPrice;
-        totalSales = totalSales + teaDrinkSales;
+        for (int i = 0; i < coffeeDrinks.length; i++){
 
-        int cappuccinoCups = intInput("How many cups of cappuccino did you sell today?");
-        double cappuccinoPrice = doubleInput("What does a cup of cappuccino cost?");
-        double cappuccinoDrinkSales = cappuccinoCups * cappuccinoPrice;
-        totalSales = totalSales + cappuccinoDrinkSales;
+            int cups = InputUtils.intInput("How many cups of " +coffeeDrinks[i] + " did you sell?");
+            double price = InputUtils.doubleInput("How much does each cup of " + coffeeDrinks[i] + " cost?");
+            double drinkSales = coffeeSales(cups, price);
+            totalSales = totalSales + drinkSales;
+        }
 
-        int mochaCups = intInput("How many cups of mocha did you sell today?");
-        double mochaPrice = doubleInput("What does a cup of mocha cost?");
-        double mochaDrinkSales = mochaCups * mochaPrice;
-        totalSales = totalSales + mochaDrinkSales;
+        String totalSalesString = String.format("%.2f", totalSales);
         
-        System.out.println("Total sales for the day are $"  + totalSales);
+        System.out.println("Total sales for the day are $"  + totalSalesString); //prints total sales
 
     }
-    
+    public double coffeeSales(int cups, double price){ //method to calculate total sales
+
+        double totalSales = cups*price;
+
+        return totalSales;
+    }
 }
 
