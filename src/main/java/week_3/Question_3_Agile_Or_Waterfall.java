@@ -1,5 +1,7 @@
 package week_3;
 
+import input.InputUtils;
+
 /**
  *
  *
@@ -48,15 +50,58 @@ public class Question_3_Agile_Or_Waterfall {
 
     public void methodology() {
 
-        // TODO Ask user the 6 questions
-        // TODO Call the agileOrWaterfall method
+        int numberOfProgrammers = InputUtils.intInput("How many programmers do you need?");
+        boolean setSchedule = InputUtils.yesNoInput("Will you need a set schedule?");
+        boolean experiance = InputUtils.yesNoInput("Do the programmers have experiance in requirements, analysis, and testing?");
+        boolean qualityControl = InputUtils.yesNoInput("Do you have quality control requirements?");
+        boolean earlyIntegration = InputUtils.yesNoInput("Do you need early integration?");
+        boolean earlyModels = InputUtils.yesNoInput("Do you need early models of the project");
+
+        String suggestion =  agileOrWaterfall(numberOfProgrammers, setSchedule, experiance, qualityControl, earlyIntegration, earlyModels);
+
         // TODO Use the suggestion agileOrWaterfall returns to print a message for the user.
 
     }
 
-    // TODO write a public agileOrWaterfall method. It should have this name, and take
-    // the 6 arguments needed, in the same order given in the description.
+    public String agileOrWaterfall(int numOfProg, boolean setSchedule, boolean experiance, boolean qualityControl, boolean earlyIntegration, boolean earlyModels){
+        String suggestion = "";
 
-    // TODO this function should return one of the three Strings AGILE, WATERFALL or EITHER.
+        double agilePoints = 0;
+        double waterfallPoints = 0;
+// Look into ways to make this less clunky? I want to test all properties individually to amass a point system, but there's probably less lines involved
+        if (numOfProg > 30){
+            waterfallPoints +=1;
+        } else{
+            agilePoints +=1;
+        }if (setSchedule == true){
+            waterfallPoints +=1;
+        } else{
+            agilePoints +=1;
+        }if (experiance == true){
+            agilePoints +=1;
+        } else{
+            waterfallPoints +=1;
+        }if (qualityControl == true){
+            waterfallPoints +=1;
+        } else{
+            agilePoints +=1;
+        }if (earlyIntegration == true){
+            agilePoints +=1;
+        } else{
+            waterfallPoints +=1;
+        }if (earlyModels == true){
+            agilePoints +=1;
+        } else{
+            waterfallPoints +=1;
+        }if (waterfallPoints > agilePoints){
+            suggestion = WATERFALL; //returns suggestion based on points system
+        }else if (agilePoints > waterfallPoints){
+            suggestion = AGILE;
+        } else {
+            suggestion = EITHER;
+        }
+        return suggestion;
+    }
+
 
 }

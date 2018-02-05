@@ -1,5 +1,7 @@
 package week_3;
 
+import input.InputUtils;
+
 /**
  *
 
@@ -26,26 +28,22 @@ public class Question_1_MPG {
 
     public void calculate() {
 
-        // TODO Ask user for number of miles, as a double
+        double numberOfMiles = InputUtils.doubleInput("How many miles did you travel? "); // gathers input data
 
-        // TODO Ask user for gallons of gas used, as a double
+        double gasUsed = InputUtils.doubleInput("How much gas did you use? ");
 
-        // TODO After this method, create a method called mpg. This method will calculate and return the MPG
+        double milesPerGallon = mpg(numberOfMiles,gasUsed);
 
-        // TODO Here, call the mpg method and save the returned MPG value
-
-        // TODO Print the return value.
+        System.out.println("Your car drives "+ milesPerGallon + " MPG.");
 
     }
 
 
+    public static double mpg(double miles,double gas) { //this method calculates MPG and returns result
+        double milesPerGallon= miles/gas;
 
-    // TODO create a public method called "mpg".
-    // A public method declaration begins with the word public, for example in the calculate() method above.
-    // The method needs to be public so the test can find it.
-    // Make sure you use the name mpg since the test expects to find a method with that name.
-    // The method takes two arguments, miles driven and gas used, in that order.
-    // It will calculate and return the MPG for this journey.
-    
+        return milesPerGallon;
+
+    }
 
 }

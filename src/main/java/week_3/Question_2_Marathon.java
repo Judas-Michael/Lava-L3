@@ -55,18 +55,30 @@ public class Question_2_Marathon {
         double targetDistance = doubleInput("What is the target distance, in miles? ");
         double weeklyPercentIncrease = doubleInput("What percent further do you want to run every week? Example: enter 5 for 5% or 10 for 10% ");
 
-        // TODO Call your trainingSchedule method.
-        // The method will print a table of weeks and distances; and return total number of weeks
-        // TODO Print the total number of weeks.
+        double totalWeeks = trainingSchedule(currentDistance,targetDistance,weeklyPercentIncrease);
+
+        System.out.println(totalWeeks);
 
 
     }
 
+    public static double trainingSchedule(double currentDistance, double targetDistance, double weeklyPercentIncrease) {
+        double totalWeeks = 0;
+
+        while (currentDistance < targetDistance){
+            currentDistance = currentDistance*(weeklyPercentIncrease/100);
+            totalWeeks = totalWeeks+1; //calculates how many weeks it will take
+        }
+
+        String currentDistanceString = String.format("%.2f", currentDistance); //formats the distance and turns it to a string
+        String targetDistanceString = String.format("%.2f", targetDistance);
+
+        return totalWeeks;
+    }
+
 
     // TODO write a public method called trainingSchedule
-    // It will take 3 double arguments: currentDistance, targetDistance, and percentIncrease
-    // Ensure that you use three double arguments, in this order.
-    //
+
     // The method will print a table of weeks and distances.
     // The final row should be a distance greater or equal to the target distance.
     // the table columns should be in that order (weeks then distance)
