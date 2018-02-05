@@ -85,11 +85,18 @@ public class Question_6_Credit_Card_Validation {
 
     public boolean isVisaCreditCardNumberValid(String cc) {
 
-        //TODO Delete the following line, and replace with your code to process the credit card number, and determine if it is valid.
-        throw new RuntimeException("Implement this method");
-        // TODO return true or false.
+        String[] newCharArray = cc.split(""); //makes string into string array divided individually
 
-    }
-
-
-}
+        int[] results = new int[newCharArray.length]; //create a new int array the same length as the character array
+        boolean answer = false;
+        for(int i = 0;i < newCharArray.length;i++){
+             try {
+                Integer.parseInt(cc);
+                 answer =  true;}
+            catch (NumberFormatException ex) { //exception catcher
+                 System.out.println("That is invalid. Use integers only please.");
+             answer =  false;
+                 }
+                }
+                return answer;
+    }}
